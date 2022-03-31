@@ -2,32 +2,11 @@ import React, { useEffect } from 'react';
 import { Song, Track, Instrument } from 'reactronica';
 import * as Tone from 'tone'
 import { fourBarDuration, ipfsHash, Slot, SlotList, slotList, SlotNote } from './constants';
+import { ProgressBarLoopTimer } from './SamplerComponents/ProgressBar';
+import { SlotButtons } from './SamplerComponents/SlotButton';
 const pinataUrlKick='https://musicgateway.mypinata.cloud/ipfs/QmXDezB5wD2RHrTkRMxGURgQ3k5sChd4gEUEYbZWKLdax7/CHIMPOKO_KICKSNARE.wav'
 const pinataUrlHH='https://musicgateway.mypinata.cloud/ipfs/QmXDezB5wD2RHrTkRMxGURgQ3k5sChd4gEUEYbZWKLdax7/CHIMPOKO_HIHAT.wav'
 
-export const SlotButtons=(slot:Slot,updateNextNotes,isNextPlayingNote:boolean,isPlayingNote:boolean)=>{
-  return (<div>
-    <button
-      onMouseDown={
-        async () => {
-          updateNextNotes(slot.slotNote,true)
-        ;}
-      }
-    >
-      {slot.slotName} on
-    </button>
-    <button
-       onMouseUp={() => {
-         updateNextNotes(slot.slotNote,false)
-        }
-      }
-    >
-      {slot.slotName} off
-    </button>
-    <div>Next : {isNextPlayingNote?"on":"off"}</div>
-    <div>Playing : {isPlayingNote?"on":"off"}</div>
-    </div>)
-}
 
 export const buildSamples=(slotList:SlotList,ipfsHash:string)=>{
   let samples={}
@@ -47,26 +26,34 @@ export const Reactronica = () => {
   const [nextNotes, setNextNotes] = React.useState(initNotes);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [restartLoop, setRestartLoop] = React.useState(false);
+  const [startLoopTime, setStartLoopTime] = React.useState(0);
+  const [areSamplesLoaded, setAreSamplesLoaded] = React.useState(false);
 
    // Resume Audio Context
    useEffect(() => {
-    console.log('resuming audio context')
     const audioContext=new AudioContext()
     audioContext.resume();
-    console.log('done')
-
-    console.log("start looping for duration "+fourBarDuration)
-    setInterval(()=>{
-      console.log("NEW LOOP")
-
-      // stop
-      setRestartLoop(true)
-  
-      setIsPlaying(false)
-      setPlayingNotes(initNotes)
-
-    },fourBarDuration*1000+100)
   },[]);
+
+  // Start Loop Script when samples are loaded
+   useEffect(() => {
+    if (areSamplesLoaded){
+      
+
+      // Start Loop
+      console.log("start looping for duration "+fourBarDuration)
+      setStartLoopTime(Date.now())
+      setRestartLoop(true)
+      setInterval(()=>{
+        console.log("NEW LOOP")
+    
+        setIsPlaying(false)
+        setPlayingNotes(initNotes)
+        setRestartLoop(true)
+
+      },fourBarDuration*1000+100)
+    }
+  },[areSamplesLoaded]);
 
   // Restart loop when loading a new note
 //   useEffect(() => {
@@ -114,25 +101,29 @@ export const Reactronica = () => {
   const updateNextNotes=(noteName:string,noteValue:boolean)=>{
     setNextNotes({...nextNotes,[noteName]:noteValue})
   }
-  console.log("playingNotes",playingNotes)
+  // console.log("playingNotes",playingNotes)
   return (
-    <>
-      <table>
+    <div className="nes-container is-rounded is-dark">
+      {ProgressBarLoopTimer(startLoopTime,fourBarDuration*1000)}
+    <div className="nes-table-responsive">
+      <table className="nes-table is-bordered is-centered">
         <thead>
             <tr>
-                <th>Sampler</th>
+                <th><span className="nes-text is-primary">Sampler</span></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody><tr>
           {slotList.map((slot)=>{
-            console.log(slot.slotName,playingNotes)
-            console.log(slot.slotName,nextNotes[slot.slotNote],playingNotes[slot.slotNote])
-            return (<tr key={slot.slotName}>
-              <td>{slot.slotName}</td>
-              <td>{SlotButtons(slot,updateNextNotes,nextNotes[slot.slotNote],playingNotes[slot.slotNote])}</td>
-          </tr>)
+            // console.log(slot.slotName,playingNotes)
+            // console.log(slot.slotName,nextNotes[slot.slotNote],playingNotes[slot.slotNote])
+            return (<td key={slot.slotName}>
+              <div className="nes-text is-primary">
+                  {slot.slotName}
+                  </div>
+              <div>{SlotButtons(slot,updateNextNotes,nextNotes[slot.slotNote],playingNotes[slot.slotNote])}</div>
+            </td>)
           })}
-            
+            </tr>
         </tbody>
     </table>
 
@@ -148,10 +139,12 @@ export const Reactronica = () => {
             onLoad={(buffers) => {
               // Runs when all samples are loaded
               console.log("**Samples Loaded**")
+              setAreSamplesLoaded(true)
             }}
           />
         </Track>
       </Song>
-    </>
+    </div>
+    </div>
   );
 };

@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Reactronica } from './Reactronica';
+import { fetchAndConsolidate } from './utils/getNftInfo';
+import { startBlock } from './constants';
 
 function App() {
+  // fetch nft info
+  useEffect(()=>{
+    // TODO: implement this
+    fetchAndConsolidate(startBlock)
+  },[])
   return (
     <div className="App">
       <header className="App-header">

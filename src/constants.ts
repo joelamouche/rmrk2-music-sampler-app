@@ -17,3 +17,7 @@ export const ipfsHash="QmYZsbc1M4Bp8SoGNrwMyrcgaoH6a8cDxQzy3wzuER1eez"
 
 export const oneBarDuration=1.9512
 export const fourBarDuration=4*oneBarDuration
+
+export const wsProviderUrl= "wss://node.rmrk.app"
+
+export const startBlock=12063944

@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 
 export const ProgressBar=(value:string,max:string)=>{
-    return (<progress className="nes-progress is-primary" value={value} max={max}></progress>
-    )
+    return (<progress className="nes-progress is-primary" value={value} max={max}></progress>)
   }
 
 const granularity=100

@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import { Song, Track, Instrument } from "reactronica";
 import * as Tone from "tone";
 import {
+  chimpoko2,
+  chimpoko3,
   fourBarDuration,
-  ipfsHash,
+  SampleSet,
   Slot,
   SlotList,
-  slotList,
   SlotNote,
+  trackList,
 } from "./constants";
 import { ProgressBarLoopTimer } from "./SamplerComponents/ProgressBar";
 import { SlotButtons } from "./SamplerComponents/SlotButton";
@@ -16,20 +18,25 @@ const pinataUrlKick =
 const pinataUrlHH =
   "https://musicgateway.mypinata.cloud/ipfs/QmXDezB5wD2RHrTkRMxGURgQ3k5sChd4gEUEYbZWKLdax7/CHIMPOKO_HIHAT.wav";
 
-export const buildSamples = (slotList: SlotList, ipfsHash: string) => {
+  const allSets=[chimpoko2,chimpoko3]
+
+export const buildSamples = (setList:SampleSet[]) => {
   let samples = {};
-  slotList.forEach((slot) => {
-    samples[
-      slot.slotNote
-    ] = `https://musicgateway.mypinata.cloud/ipfs/${ipfsHash}/CHIMPOKO2_${slot.slotName}.wav`;
-  });
+  setList.forEach((set)=>
+    {set.slotList.forEach((slot) => {
+      samples[
+        slot.slotNote
+      ] = `https://musicgateway.mypinata.cloud/ipfs/${set.ipfsHash}/${slot.slotFileOverride?slot.slotFileOverride:slot.slotName}.wav`;
+    })
+  })
   return samples;
 };
 
 // Simplified Drum Pads
 export const Reactronica = () => {
-  let initNotes: { [key: SlotNote]: boolean } = {};
-  slotList.forEach((slot) => {
+  const initNotes: { [key: SlotNote]: boolean } = {};
+  const allSamples:SlotList=[...chimpoko2.slotList,...chimpoko3.slotList]
+    allSamples.forEach((slot) => {
     initNotes[slot.slotNote] = false;
   });
   const [playingNotes, setPlayingNotes] = React.useState(initNotes);
@@ -50,15 +57,16 @@ export const Reactronica = () => {
     if (areSamplesLoaded) {
       // Start Loop
       console.log("start looping for duration " + fourBarDuration);
-      setStartLoopTime(Date.now());
+      //start the loop a first time
       setRestartLoop(true);
+      // start the loop sequence
       setInterval(() => {
         console.log("NEW LOOP");
 
         setIsPlaying(false);
         setPlayingNotes(initNotes);
         setRestartLoop(true);
-      }, fourBarDuration * 1000 + 100);
+      }, fourBarDuration * 1000 + 1);
     }
   }, [areSamplesLoaded]);
 
@@ -90,6 +98,8 @@ export const Reactronica = () => {
       setRestartLoop(false);
 
       setIsPlaying(true);
+      // set loop start time
+      setStartLoopTime(Date.now());
       console.log("nextNotes", nextNotes);
       setPlayingNotes(nextNotes);
     }
@@ -112,7 +122,7 @@ export const Reactronica = () => {
   };
   // console.log("playingNotes",playingNotes)
   return (
-    <div className="nes-container is-rounded is-dark">
+    <div className="nes-container is-rounded is-dark Reactronica-frame">
       {ProgressBarLoopTimer(startLoopTime, fourBarDuration * 1000)}
       <div className="nes-table-responsive">
         <table className="nes-table is-bordered is-centered">
@@ -121,28 +131,45 @@ export const Reactronica = () => {
               <th>
                 <span className="nes-text is-primary">Sampler</span>
               </th>
+              {trackList.map((trackName)=>{
+                return <th key={trackName}>
+                  <span className="nes-text is-primary">{trackName}</span>
+                </th>
+              })}
             </tr>
           </thead>
           <tbody>
-            <tr>
-              {slotList.map((slot) => {
-                // console.log(slot.slotName,playingNotes)
-                // console.log(slot.slotName,nextNotes[slot.slotNote],playingNotes[slot.slotNote])
-                return (
-                  <td key={slot.slotName}>
-                    <div className="nes-text is-primary">{slot.slotName}</div>
-                    <div>
-                      {SlotButtons(
-                        slot,
-                        updateNextNotes,
-                        nextNotes[slot.slotNote],
-                        playingNotes[slot.slotNote]
-                      )}
-                    </div>
-                  </td>
-                );
-              })}
-            </tr>
+          {allSets.map((set)=>{
+            return  (<tr key={set.setName}>
+              <td key={set.setName}>
+                <div className="nes-text is-primary">{set.setName}</div>
+              </td>
+                {trackList.map((trackName,i)=>{
+                  if (i<set.slotList.length){
+                    const slot=set.slotList[i]
+                    return (    
+                      <td key={slot.slotName}>
+                        <div className="nes-text is-primary">{slot.slotName}</div>
+                        <div>
+                          {SlotButtons(
+                            slot,
+                            updateNextNotes,
+                            nextNotes[slot.slotNote],
+                            playingNotes[slot.slotNote]
+                          )}
+                        </div>
+                      </td>
+                    );
+                  } else {
+                    return (    
+                      <td key={trackName}>
+                        <div className="nes-text is-primary">{trackName}</div>
+                      </td>
+                    );
+                  }
+                }) }
+            </tr>)
+          })}
           </tbody>
         </table>
 
@@ -158,7 +185,7 @@ export const Reactronica = () => {
                 .map((name) => {
                   return { name, duration: fourBarDuration };
                 })}
-              samples={buildSamples(slotList, ipfsHash)}
+              samples={buildSamples(allSets)}
               onLoad={(buffers) => {
                 // Runs when all samples are loaded
                 console.log("**Samples Loaded**");

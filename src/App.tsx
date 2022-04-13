@@ -12,7 +12,7 @@ function App() {
     //fetchAndConsolidate(startBlock)
   }, []);
   return (
-    <div className="App">
+    <div className="App" style={{fontFamily: 'Press Start 2P'}}>
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" />
         <p>

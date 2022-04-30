@@ -21,18 +21,16 @@
   align-items: center;
   justify-content: center;
   font-size: calc(5px + 1vmin);
-  padding:30px;
+  padding: 30px;
   color: white;
 }
-
 
 .Sample-component {
   font-size: calc(3px + 0.6vmin);
 }
 
-
 .Reactronica-frame {
-  margin:20px;
+  margin: 20px;
   color: blue;
 }
 

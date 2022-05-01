@@ -1,7 +1,8 @@
 {
-  "name": "my-app",
+  "name": "rmrk-two-music-app-jlm",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://joelamouche.github.io/rmrk2-music-sampler-app/",
   "dependencies": {
     "@polkadot/api": "^7.14.3",
     "@testing-library/jest-dom": "^5.16.3",
@@ -32,7 +33,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -51,5 +54,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
   }
 }

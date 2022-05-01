@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
-import _ from "lodash"
+import _ from "lodash";
 import { KeyboardState, SampleSet, SlotList, TrackName } from "../types";
 import { ProgressBarLoopTimer } from "./SamplerComponents/ProgressBar";
 import { SamplerTable } from "./SamplerComponents/SamplerTable";
 import { MusicPlayer } from "./ReactronicaComponents/MusicPlayer";
 
-
 export interface CustomStyles {
-  containerStyle:string,
+  containerStyle: string;
 }
 // Simplified Drum Pads
 export const FullSamplerComponent = (
@@ -47,22 +46,23 @@ export const FullSamplerComponent = (
       //start the loop a first time
       setRestartLoop(true);
       // start the loop sequence
-      setIntervalRef( setInterval(() => {
-        console.log("NEW LOOP");
+      setIntervalRef(
+        setInterval(() => {
+          console.log("NEW LOOP");
 
-        setIsPlaying(false);
-        setPlayingNotes(initNotes);
-        setRestartLoop(true);
-      }, loopTime));
+          setIsPlaying(false);
+          setPlayingNotes(initNotes);
+          setRestartLoop(true);
+        }, loopTime)
+      );
       setStartLoopTime(Date.now());
-      console.log("start time")
+      console.log("start time");
     } else {
-      console.log("CLEAR INTERVAL FOR NEW SAMPLES")
-      clearInterval(intervalRef)
-      setNextNotes(initNotes)
+      console.log("CLEAR INTERVAL FOR NEW SAMPLES");
+      clearInterval(intervalRef);
+      setNextNotes(initNotes);
     }
   }, [areSamplesLoaded]);
-
 
   useEffect(() => {
     if (
@@ -76,7 +76,7 @@ export const FullSamplerComponent = (
       // set loop start time
       // setStartLoopTime(Date.now());
       console.log("nextNotes", nextNotes);
-      if (!_.isEqual(playingNotes,nextNotes)){
+      if (!_.isEqual(playingNotes, nextNotes)) {
         setPlayingNotes(nextNotes);
       }
     }
@@ -109,9 +109,9 @@ export const FullSamplerComponent = (
     });
     setNextNotes(_nextNotes);
   };
-  
+
   return (
-    <div className={`nes-container is-rounded is-dark Reactronica-frame`} >
+    <div className={`nes-container is-rounded is-dark Reactronica-frame`}>
       <div>
         <i className="nes-icon coin is-smal"></i>
         <span style={{ marginBottom: "2vmin" }}>{title}</span>

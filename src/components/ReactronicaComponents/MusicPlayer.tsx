@@ -2,8 +2,10 @@ import React, { useEffect } from "react";
 import { Song, Track, Instrument } from "reactronica";
 import { KeyboardState, SamplePath, SampleSet, SlotNote } from "../../types";
 
-export const buildSamples = (setList: SampleSet[]):{[key:SlotNote]:SamplePath} => {
-    console.log("buildsamples")
+export const buildSamples = (
+  setList: SampleSet[]
+): { [key: SlotNote]: SamplePath } => {
+  console.log("buildsamples");
   let samples = {};
   setList.forEach((set) => {
     set.slotList.forEach((slot) => {
@@ -26,14 +28,14 @@ export const MusicPlayer = (
   numberOfBars,
   setAreSamplesLoaded: (boolean) => void
 ) => {
-   const [builtSamples, setBuiltSamples] = React.useState({});
- const loopTimeInSeconds = (60 / _bpm) * 4 * numberOfBars;
-  useEffect(()=>{
-   console.log("RERENDER MUSIC PLAYER")
-   setAreSamplesLoaded(false);
-   setBuiltSamples(buildSamples(sampleSet))
-  },[sampleSet])
-  
+  const [builtSamples, setBuiltSamples] = React.useState({});
+  const loopTimeInSeconds = (60 / _bpm) * 4 * numberOfBars;
+  useEffect(() => {
+    console.log("RERENDER MUSIC PLAYER");
+    setAreSamplesLoaded(false);
+    setBuiltSamples(buildSamples(sampleSet));
+  }, [sampleSet]);
+
   return (
     <Song isPlaying={isPlaying} bpm={_bpm}>
       <Track>

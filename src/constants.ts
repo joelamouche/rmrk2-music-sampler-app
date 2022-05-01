@@ -229,33 +229,32 @@ export const walfroySet4: SampleSet = {
   ],
 };
 
-export const billyRayInputs:MusicInputs=[
+export const billyRayInputs: MusicInputs = [
   "Billy Ray Valentine",
   126,
   4,
   [nicolasBaseSet, nicolaSet2, nicolaSet3],
   nicolasTrackList,
-  [
-    ...nicolasBaseSet.slotList,
-    ...nicolaSet2.slotList,
-    ...nicolaSet3.slotList,
-  ]
-]
-export const walfroyInputs:MusicInputs=[
+  [...nicolasBaseSet.slotList, ...nicolaSet2.slotList, ...nicolaSet3.slotList],
+];
+export const walfroyInputs: MusicInputs = [
   "Walfroy",
   140,
   4,
   [
     //walfroySet1,
-     walfroySet2, walfroySet3, walfroySet4],
+    walfroySet2,
+    walfroySet3,
+    walfroySet4,
+  ],
   walfroyTrackList,
   [
     //...walfroySet1.slotList,
     ...walfroySet2.slotList,
     ...walfroySet3.slotList,
     ...walfroySet4.slotList,
-  ]
-]
+  ],
+];
 
 // export const oneBarDuration = 1.9512;
 // export const fourBarDuration = 4 * oneBarDuration;

@@ -17,16 +17,18 @@ export const SlotButtons = (
         {slot.slotName}
       </div>
       <div style={{ padding: "3px" }}>
-        {!isPlayingNote ? 
-         <button
-         type="button"
-         className="nes-btn is-error"
-         onMouseUp={() => {
-           updateNextNotes(slot.slotNote, true, trackIndex);
-         }}
-       >
-         OFF
-       </button>: <button
+        {!isPlayingNote ? (
+          <button
+            type="button"
+            className="nes-btn is-error"
+            onMouseUp={() => {
+              updateNextNotes(slot.slotNote, true, trackIndex);
+            }}
+          >
+            OFF
+          </button>
+        ) : (
+          <button
             type="button"
             className="nes-btn is-success"
             onMouseDown={async () => {
@@ -35,7 +37,7 @@ export const SlotButtons = (
           >
             ON
           </button>
-        }
+        )}
       </div>
       <div style={{ paddingTop: "3px" }}>
         <div>

@@ -3,11 +3,13 @@ import logo from "./logo.svg";
 import "./App.css";
 //import { fetchAndConsolidate } from './utils/getNftInfo';
 import {
+  billyRayInputs,
   nicolasBaseSet,
   nicolaSet2,
   nicolaSet3,
   nicolasTrackList,
   startBlock,
+  walfroyInputs,
   walfroySet1,
   walfroySet2,
   walfroySet3,
@@ -15,12 +17,13 @@ import {
   walfroyTrackList,
 } from "./constants";
 import { FullSamplerComponent } from "./components/FullSamplerComponent";
+import { MusicInputs, SampleSet, SlotList, TrackName } from "./types";
 
 
-const brvStyle={containerStyle:"nes-container is-rounded is-dark"}
 
 function App() {
-  const [selectedPage, selectPage] = React.useState("Billy Ray Valentine");
+  // const [selectedPage, selectPage] = React.useState("Billy Ray Valentine");
+  const [musicInput, setMusicInput] = React.useState(billyRayInputs);
   // fetch nft info
   useEffect(() => {
     // TODO: implement this
@@ -29,49 +32,51 @@ function App() {
   return (
     <div className="App" style={{ fontFamily: "Press Start 2P" }}>
       <header className="App-header">
-        <button
-          type="button"
-          className="nes-btn is-success"
-          onMouseDown={async () => {
-            selectPage("Billy Ray Valentine");
-          }}
-        >
-          Billy Ray Valentine
-        </button>
-        <button
-          type="button"
-          className="nes-btn is-success"
-          onMouseDown={async () => {
-            selectPage("Walfroy");
-          }}
-        >
-          Walfroy
-        </button>
-        {selectedPage === "Billy Ray Valentine"
-          ? FullSamplerComponent(
-              "Billy Ray Valentine",
-              126,
-              4,
-              [nicolasBaseSet, nicolaSet2, nicolaSet3],
-              nicolasTrackList,
-              [
-                ...nicolasBaseSet.slotList,
-                ...nicolaSet2.slotList,
-                ...nicolaSet3.slotList,
-              ]
-            )
-          : FullSamplerComponent(
-              "Walfroy",
-              140,
-              4,
-              [walfroySet1, walfroySet2, walfroySet3, walfroySet4],
-              walfroyTrackList,
-              [
-                ...walfroySet1.slotList,
-                ...walfroySet2.slotList,
-                ...walfroySet3.slotList,
-                ...walfroySet4.slotList,
-              ]
+        <div style={{whiteSpace: "nowrap",
+    overflowX: "auto"}}>
+            <div
+                style={{display:"inlineBlock"}}>
+              <button
+                type="button"
+                className={musicInput[0]==="Billy Ray Valentine"?"nes-btn is-success":"nes-btn is-primary"}
+                onMouseDown={async () => {
+                  setMusicInput(billyRayInputs);
+                }}
+              >
+                Billy Ray Valentine
+              </button>
+            </div>
+            <div
+              style={{display:"inlineBlock"}}>
+            <button
+              type="button"
+              className={musicInput[0]==="Walfroy"?"nes-btn is-success":"nes-btn is-primary"}
+              onMouseDown={async () => {
+                setMusicInput(walfroyInputs);
+              }}
+            >
+              Walfroy
+            </button>
+            </div>
+        </div>
+        
+        {
+        // selectedPage === "Billy Ray Valentine"
+        //   ? FullSamplerComponent(
+        //       "Billy Ray Valentine",
+        //       126,
+        //       4,
+        //       [nicolasBaseSet, nicolaSet2, nicolaSet3],
+        //       nicolasTrackList,
+        //       [
+        //         ...nicolasBaseSet.slotList,
+        //         ...nicolaSet2.slotList,
+        //         ...nicolaSet3.slotList,
+        //       ]
+        //     )
+        //   : 
+          FullSamplerComponent(
+              ...musicInput
             )}
       </header>
     </div>

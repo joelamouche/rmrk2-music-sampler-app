@@ -1,4 +1,4 @@
-import { SampleSet, SlotList } from "./types";
+import { MusicInputs, SampleSet, SlotList } from "./types";
 
 export const dep_slotList: SlotList = [
   { slotName: "BASS", slotNote: "C3" },
@@ -72,16 +72,16 @@ export const nicolasBaseSet: SampleSet = {
   setName: "New Eyes 1",
   ipfsHash: "QmPuFWxZCiPqq5D9BQTiYaDiqNNdebf41UrkjoAUawBTKD",
   slotList: [
-    { slotName: "KICK", slotNote: "D4" },
-    { slotName: "BASSE", slotNote: "B4" },
-    { slotName: "HIHAT", slotNote: "C4" },
-    { slotName: "SNARE", slotNote: "E4" },
-    { slotName: "PERC", slotNote: "F4" },
-    { slotName: "NAPPE", slotNote: "G4" },
-    { slotName: "SYNTHHI", slotNote: "A5" },
-    { slotName: "SYNTHMED", slotNote: "B5" },
-    { slotName: "VAPORSOUNDS", slotNote: "C5" },
-    { slotName: "SAMPLESFIGHT(4BARS)", slotNote: "D5" },
+    { slotName: "KICK", slotNote: "A1" },
+    { slotName: "BASSE", slotNote: "B1" },
+    { slotName: "HIHAT", slotNote: "C1" },
+    { slotName: "SNARE", slotNote: "D1" },
+    { slotName: "PERC", slotNote: "E1" },
+    { slotName: "NAPPE", slotNote: "F1" },
+    { slotName: "SYNTHHI", slotNote: "G1" },
+    { slotName: "SYNTHMED", slotNote: "A2" },
+    { slotName: "VAPORSOUNDS", slotNote: "B2" },
+    { slotName: "SAMPLESFIGHT(4BARS)", slotNote: "C2" },
   ],
 };
 
@@ -91,20 +91,20 @@ export const nicolaSet2: SampleSet = {
   slotList: [
     undefined,
     undefined,
-    { slotName: "HIHAT 2", slotNote: "A3" },
+    { slotName: "HIHAT 2", slotNote: "D2" },
     undefined,
-    { slotName: "PERC2", slotNote: "B3" },
+    { slotName: "PERC2", slotNote: "E2" },
     undefined,
-    { slotName: "SYNTH2HI", slotNote: "C3" },
-    { slotName: "SYNTH2MED", slotNote: "D3" },
-    { slotName: "SYNTHCLOUD (4BAR)", slotNote: "E3" },
+    { slotName: "SYNTH2HI", slotNote: "F2" },
+    { slotName: "SYNTH2MED", slotNote: "G2" },
+    { slotName: "SYNTHCLOUD (4BAR)", slotNote: "A3" },
     undefined,
   ],
 };
 export const nicolaSet3: SampleSet = {
   setName: "New Eyes 3",
   ipfsHash: "QmPuFWxZCiPqq5D9BQTiYaDiqNNdebf41UrkjoAUawBTKD",
-  slotList: [undefined, undefined, { slotName: "HIHAT 3", slotNote: "F3" }],
+  slotList: [undefined, undefined, { slotName: "HIHAT 3", slotNote: "B3" }],
 };
 
 export const nicolasTrackList = [
@@ -151,7 +151,7 @@ export const walfroySet1: SampleSet = {
   ],
 };
 export const walfroySet2: SampleSet = {
-  setName: "Walfroy 2",
+  setName: "module01",
   ipfsHash: "QmVV4FGcfw5CtPMYyjY9oFHu3rnq6TkSJPP8fQLxmVuVbL",
   slotList: [
     {
@@ -177,7 +177,7 @@ export const walfroySet2: SampleSet = {
   ],
 };
 export const walfroySet3: SampleSet = {
-  setName: "Walfroy 3",
+  setName: "module02",
   ipfsHash: "QmVV4FGcfw5CtPMYyjY9oFHu3rnq6TkSJPP8fQLxmVuVbL",
   slotList: [
     {
@@ -203,31 +203,59 @@ export const walfroySet3: SampleSet = {
   ],
 };
 export const walfroySet4: SampleSet = {
-  setName: "Walfroy 4",
+  setName: "module03",
   ipfsHash: "QmVV4FGcfw5CtPMYyjY9oFHu3rnq6TkSJPP8fQLxmVuVbL",
   slotList: [
     {
       slotName: "Kick 4",
-      slotNote: "A3",
+      slotNote: "A6",
       slotFileOverride: "techno loop 4 1-DS Kick",
     },
     {
       slotName: "Diva 4.1",
-      slotNote: "B3",
+      slotNote: "B6",
       slotFileOverride: "techno loop 4 2-Diva",
     },
     {
       slotName: "Diva 4.2",
-      slotNote: "C3",
+      slotNote: "C6",
       slotFileOverride: "techno loop 4 3-Diva",
     },
     {
       slotName: "Akustichord Kit",
-      slotNote: "D3",
+      slotNote: "D6",
       slotFileOverride: "techno loop 4 4-Akustichord Kit",
     },
   ],
 };
+
+export const billyRayInputs:MusicInputs=[
+  "Billy Ray Valentine",
+  126,
+  4,
+  [nicolasBaseSet, nicolaSet2, nicolaSet3],
+  nicolasTrackList,
+  [
+    ...nicolasBaseSet.slotList,
+    ...nicolaSet2.slotList,
+    ...nicolaSet3.slotList,
+  ]
+]
+export const walfroyInputs:MusicInputs=[
+  "Walfroy",
+  140,
+  4,
+  [
+    //walfroySet1,
+     walfroySet2, walfroySet3, walfroySet4],
+  walfroyTrackList,
+  [
+    //...walfroySet1.slotList,
+    ...walfroySet2.slotList,
+    ...walfroySet3.slotList,
+    ...walfroySet4.slotList,
+  ]
+]
 
 // export const oneBarDuration = 1.9512;
 // export const fourBarDuration = 4 * oneBarDuration;

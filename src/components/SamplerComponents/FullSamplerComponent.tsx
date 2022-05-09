@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import _ from "lodash";
-import { KeyboardState, SampleSet, SlotList, TrackName } from "../types";
-import { ProgressBarLoopTimer } from "./SamplerComponents/ProgressBar";
-import { SamplerTable } from "./SamplerComponents/SamplerTable";
-import { MusicPlayer } from "./ReactronicaComponents/MusicPlayer";
+import { KeyboardState, SampleSet, SlotList, TrackName } from "../../types";
+import { ProgressBarLoopTimer } from "./ProgressBar";
+import { SamplerTable } from "./SamplerTable";
+import { MusicPlayer } from "../ReactronicaComponents/MusicPlayer";
 
 export interface CustomStyles {
   containerStyle: string;

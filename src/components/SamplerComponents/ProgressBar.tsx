@@ -10,7 +10,7 @@ export const ProgressBar = (value: string, max: string) => {
   );
 };
 
-const granularity = 100;
+const granularity = 20;
 
 export const ProgressBarLoopTimer = (
   startTime: number,

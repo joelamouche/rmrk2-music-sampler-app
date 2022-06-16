@@ -3,7 +3,6 @@ import "./App.css";
 import { Menu } from "./components/DisplayLogicComponents/Menu";
 import { About } from "./components/About";
 import { MusicComponent } from "./components/MusicComponent";
-import { billyRayInputs } from "./constants";
 
 function App() {
   const [selectedPage, selectPage] = React.useState("Music");

@@ -155,17 +155,17 @@ export const walfroySet2: SampleSet = {
   ipfsHash: "QmVV4FGcfw5CtPMYyjY9oFHu3rnq6TkSJPP8fQLxmVuVbL",
   slotList: [
     {
-      slotName: "Kick 2",
+      slotName: "Kick 1",
       slotNote: "F4",
       slotFileOverride: "techno loop 2 1-DS Kick",
     },
     {
-      slotName: "Diva 2.1",
+      slotName: "Diva 1.1",
       slotNote: "G4",
       slotFileOverride: "techno loop 2 2-Diva",
     },
     {
-      slotName: "Diva 2.2",
+      slotName: "Diva 1.2",
       slotNote: "A5",
       slotFileOverride: "techno loop 2 3-Diva",
     },
@@ -181,17 +181,17 @@ export const walfroySet3: SampleSet = {
   ipfsHash: "QmVV4FGcfw5CtPMYyjY9oFHu3rnq6TkSJPP8fQLxmVuVbL",
   slotList: [
     {
-      slotName: "Kick 3",
+      slotName: "Kick 2",
       slotNote: "C5",
       slotFileOverride: "techno loop 3 1-DS Kick",
     },
     {
-      slotName: "Diva 3.1",
+      slotName: "Diva 2.1",
       slotNote: "D5",
       slotFileOverride: "techno loop 3 2-Diva",
     },
     {
-      slotName: "Diva 3.2",
+      slotName: "Diva 2.2",
       slotNote: "E5",
       slotFileOverride: "techno loop 3 3-Diva",
     },
@@ -207,17 +207,17 @@ export const walfroySet4: SampleSet = {
   ipfsHash: "QmVV4FGcfw5CtPMYyjY9oFHu3rnq6TkSJPP8fQLxmVuVbL",
   slotList: [
     {
-      slotName: "Kick 4",
+      slotName: "Kick 3",
       slotNote: "A6",
       slotFileOverride: "techno loop 4 1-DS Kick",
     },
     {
-      slotName: "Diva 4.1",
+      slotName: "Diva 3.1",
       slotNote: "B6",
       slotFileOverride: "techno loop 4 2-Diva",
     },
     {
-      slotName: "Diva 4.2",
+      slotName: "Diva 3.2",
       slotNote: "C6",
       slotFileOverride: "techno loop 4 3-Diva",
     },

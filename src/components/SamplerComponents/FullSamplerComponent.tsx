@@ -65,25 +65,18 @@ export const FullSamplerComponent = (
   }, [areSamplesLoaded]);
 
   useEffect(() => {
-    if (
-      //!isPlaying&&
-      restartLoop
-    ) {
+    if (restartLoop) {
       console.log("restarting loop");
       setRestartLoop(false);
 
       setIsPlaying(true);
       // set loop start time
-      // setStartLoopTime(Date.now());
       console.log("nextNotes", nextNotes);
       if (!_.isEqual(playingNotes, nextNotes)) {
         setPlayingNotes(nextNotes);
       }
     }
-  }, [
-    //isPlaying,
-    restartLoop,
-  ]);
+  }, [restartLoop]);
 
   // and turn off notes of the same track
   const updateNextNotes = (

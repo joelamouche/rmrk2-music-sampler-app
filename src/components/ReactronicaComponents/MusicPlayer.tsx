@@ -5,7 +5,6 @@ import { KeyboardState, SamplePath, SampleSet, SlotNote } from "../../types";
 export const buildSamples = (
   setList: SampleSet[]
 ): { [key: SlotNote]: SamplePath } => {
-  console.log("buildsamples");
   let samples = {};
   setList.forEach((set) => {
     set.slotList.forEach((slot) => {

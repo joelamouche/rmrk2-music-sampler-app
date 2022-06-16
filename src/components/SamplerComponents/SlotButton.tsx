@@ -48,14 +48,6 @@ export const SlotButtons = (
             <span className="nes-text is-error">off</span>
           )}
         </div>
-        {/* <div>
-          <span className="nes-text is-primary">Playing : </span>
-          {isPlayingNote ? (
-            <span className="nes-text is-success">on</span>
-          ) : (
-            <span className="nes-text is-error">off</span>
-          )}
-        </div> */}
       </div>
     </div>
   );

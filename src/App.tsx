@@ -16,8 +16,10 @@ function App() {
     <div className="App" style={{ fontFamily: "Press Start 2P" }}>
       <header className="App-header">
         {Menu(selectedPage, selectPage)}
-        <div style={{fontSize:"4vmin",margin:"2vmin 0 2vmin 0"}}>STN STUDIOS</div>
-        {selectedPage==="Music"?<MusicComponent />:<About/>}
+        <div style={{ fontSize: "4vmin", margin: "2vmin 0 2vmin 0" }}>
+          STN STUDIOS
+        </div>
+        {selectedPage === "Music" ? <MusicComponent /> : <About />}
       </header>
     </div>
   );

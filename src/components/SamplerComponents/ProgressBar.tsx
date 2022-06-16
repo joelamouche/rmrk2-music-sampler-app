@@ -19,8 +19,8 @@ export const ProgressBarLoopTimer = (
 ) => {
   let loopTime = (60000 / bpm) * 4 * numberOfBars;
   const [currentLoopTime, setCurrentLoopTime] = React.useState(0);
-  const interval = loopTime / granularity; //Math.floor(loopTime / granularity);
-  // console.log((Date.now() - startTime) % loopTime, loopTime)
+  const interval = loopTime / granularity;
+
   useEffect(() => {
     setInterval(() => {
       setCurrentLoopTime((Date.now() - startTime) % loopTime);

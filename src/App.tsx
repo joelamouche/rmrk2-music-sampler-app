@@ -19,7 +19,13 @@ function App() {
         <div style={{ fontSize: "4vmin", margin: "2vmin 0 2vmin 0" }}>
           STN STUDIOS
         </div>
-        {selectedPage === "Music" ? <MusicComponent /> : selectedPage === "About" ?<About />:<NFTSection/>}
+        {selectedPage === "Music" ? (
+          <MusicComponent />
+        ) : selectedPage === "About" ? (
+          <About />
+        ) : (
+          <NFTSection />
+        )}
       </header>
     </div>
   );

@@ -5,7 +5,7 @@ export const Menu = (page: string, setPage: (page: string) => void) => {
         style={{
           color: page === "Music" ? "blue" : "white",
           display: "inline",
-          marginRight: "25vw",
+          marginRight: "15vw",
         }}
         onMouseDown={async () => {
           setPage("Music");
@@ -17,12 +17,24 @@ export const Menu = (page: string, setPage: (page: string) => void) => {
         style={{
           color: page === "About" ? "blue" : "white",
           display: "inline",
+          marginRight: "15vw",
         }}
         onMouseDown={async () => {
           setPage("About");
         }}
       >
         About
+      </div>
+      <div
+        style={{
+          color: page === "NFTs" ? "blue" : "white",
+          display: "inline",
+        }}
+        onMouseDown={async () => {
+          setPage("NFTs");
+        }}
+      >
+        NFTs
       </div>
     </div>
   );

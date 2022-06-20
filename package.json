@@ -2,7 +2,7 @@
   "name": "rmrk-two-music-app-jlm",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://joelamouche.github.io/rmrk2-music-sampler-app/",
+  "homepage": "https://stnstudios.art",
   "dependencies": {
     "@polkadot/api": "^7.14.3",
     "@testing-library/jest-dom": "^5.16.3",

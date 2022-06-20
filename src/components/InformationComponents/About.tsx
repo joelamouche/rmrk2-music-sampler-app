@@ -5,6 +5,7 @@ export const About = () => {
       style={{ textAlign: "justify", width: "90vw", padding: "10vw" }}
     >
       <h2 className="nes-text is-primary">STN Studios</h2>
+      <p><a href="https://medium.com/@antoineestienne/experimenting-with-composable-music-nfts-and-electronic-music-3ec889506fe0">Link to Medium Article</a></p>
       <p>
         This proof of concept shows the potential of composable music with
         nested NFTs.
